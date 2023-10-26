@@ -72,37 +72,3 @@ function atualizarJogo() {
         alert('ID não encontrado na base de dados. Nenhum jogo foi alterado. Favor pesquisar jogo a ser alterado !!!');
     }
 }
-
-function excluirJogo() {
-	var a = 0;
-    pesquisarJogo();
-    if (result == 1) {
-        const name = document.getElementById('name').value;
-        const plataform = document.getElementById('plataform').value;
-        const searchId = document.getElementById('searchId').value;
-        document.getElementById('cadastroForm').reset(); 
-
-        fetch(`http://localhost:8080/jogos/${searchId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, plataform }),
-        })
-            .then(response => response.json())
-            .then(data => {
-            
-            })
-            .catch(error => {
-                console.error('Erro ao atualizar jogo:', error);
-            });
-    } else {
-		a = 1;
-        alert('ID não encontrado na base de dados. Nenhum jogo foi alterado. Favor pesquisar jogo a ser alterado !!!');
-    }
-    if(a == 0){
-		alert('Jogo deletado com sucesso!');
-		document.getElementById('cadastroForm').reset(); 
-	}
-	 location.reload();                  
-}
